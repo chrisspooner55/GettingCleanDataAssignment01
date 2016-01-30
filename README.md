@@ -11,7 +11,8 @@ subject and the activity.
 
 ###Running the run_analysis.R
 
-To run, first set the working directory to the root of the originally sourced data
+To run, first set the working directory to the root of the originally sourced data and 
+then run the script which will create a final data set called tidyData
 
 ###Data Source
 
