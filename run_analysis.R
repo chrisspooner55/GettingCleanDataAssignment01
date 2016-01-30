@@ -1,13 +1,10 @@
-#Set the data directory
-dataDir <- "/Users/Spoons/documents/git/GettingCleaningDataAssignment02Data"
-
 #Read in the test data
 library(data.table)
-filePath <- paste (dataDir,"/UCI HAR Dataset/test/X_test.txt", sep = "", collapse = NULL)
+filePath <- paste (getwd(),"/UCI HAR Dataset/test/X_test.txt", sep = "", collapse = NULL)
 testData <- fread(filePath)
 
 #Read in the feature names so that they can be used to label the columns
-filePath <- paste (dataDir,"/UCI HAR Dataset/features.txt", sep = "", collapse = NULL)
+filePath <- paste (getwd(),"/UCI HAR Dataset/features.txt", sep = "", collapse = NULL)
 featureNames <- read.table(filePath)
 
 #Convert featureNames to a character vector so it can be used to rename the columns
@@ -17,7 +14,7 @@ ftNames <- as.character(featureNames[,2])
 setnames(testData,names(testData),ftNames)
 
 #Read in the test activities
-filePath <- paste (dataDir,"/UCI HAR Dataset/test/y_test.txt", sep = "", collapse = NULL)
+filePath <- paste (getwd(),"/UCI HAR Dataset/test/y_test.txt", sep = "", collapse = NULL)
 testActivities <- read.table(filePath)
 setnames(testActivities,"V1","activitylabel")
 
@@ -25,7 +22,7 @@ setnames(testActivities,"V1","activitylabel")
 testData$activitylabel <- testActivities
 
 #Add the test subject
-filePath <- paste (dataDir,"/UCI HAR Dataset/test/subject_test.txt", sep = "", collapse = NULL)
+filePath <- paste (getwd(),"/UCI HAR Dataset/test/subject_test.txt", sep = "", collapse = NULL)
 testSubject <- read.table(filePath)
 setnames(testSubject,"V1","subject")
 
@@ -33,12 +30,12 @@ setnames(testSubject,"V1","subject")
 testData$subject <- testSubject
 
 #Read in the train data and rename
-filePath <- paste (dataDir,"/UCI HAR Dataset/train/X_train.txt", sep = "", collapse = NULL)
+filePath <- paste (getwd(),"/UCI HAR Dataset/train/X_train.txt", sep = "", collapse = NULL)
 trainData <- fread(filePath)
 setnames(trainData,names(trainData),ftNames)
 
 #Read in the train activities
-filePath <- paste (dataDir,"/UCI HAR Dataset/train/y_train.txt", sep = "", collapse = NULL)
+filePath <- paste (getwd(),"/UCI HAR Dataset/train/y_train.txt", sep = "", collapse = NULL)
 trainActivities <- read.table(filePath)
 setnames(trainActivities,"V1","activitylabel")
 
@@ -46,7 +43,7 @@ setnames(trainActivities,"V1","activitylabel")
 trainData$activitylabel <- trainActivities
 
 #Add the train subject
-filePath <- paste (dataDir,"/UCI HAR Dataset/train/subject_train.txt", sep = "", collapse = NULL)
+filePath <- paste (getwd(),"/UCI HAR Dataset/train/subject_train.txt", sep = "", collapse = NULL)
 trainSubject <- read.table(filePath)
 setnames(trainSubject,"V1","subject")
 
@@ -62,7 +59,7 @@ trainData <- trainData[, cols,with = FALSE]
 mergedData <- rbind(testData,trainData)
 
 #Read in the activity lables
-filePath <- paste (dataDir,"/UCI HAR Dataset/activity_labels.txt", sep = "", collapse = NULL)
+filePath <- paste (getwd(),"/UCI HAR Dataset/activity_labels.txt", sep = "", collapse = NULL)
 activityLabels <- read.table(filePath)
 setnames(activityLabels,"V1","activitylabel")
 setnames(activityLabels,"V2","activityname")
